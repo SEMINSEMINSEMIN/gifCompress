@@ -28,18 +28,14 @@ function App() {
                 imageData.data.set(frame.pixels);
                 bufferContext.putImageData(imageData, -frame.x, -frame.y);
                 document.body.append(bufferCanvas);
-                return bufferContext.canvas.toDataURL();
+                return bufferCanvas;
             });
 
             const exportCuts = async () => {
                 const cuts = res;
 
-                cuts.forEach((imgUrl) => {
-                    const img = new Image();
-                    img.src = imgUrl;
-                    img.width = 400;
-                    img.height = 400;
-                    gif.addFrame(img, { delay: 100 });
+                cuts.forEach((canvas) => {
+                    gif.addFrame(canvas, { delay: 100 });
                 });
 
                 gif.on("finished", async (blob) => {
