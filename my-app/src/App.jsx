@@ -1,11 +1,10 @@
 // https://github.com/jnordberg/gif.js/issues/115
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import GIF from "gif.js.optimized";
 import "gifler";
 import QQ from "./assets/gif/run.gif";
 
 function App() {
-    const frameExtracted = useRef();
     const [output, setOutput] = useState();
 
     useEffect(() => {
@@ -32,10 +31,8 @@ function App() {
                 return bufferContext.canvas.toDataURL();
             });
 
-            frameExtracted.current = res;
-
             const exportCuts = async () => {
-                const cuts = frameExtracted.current;
+                const cuts = res;
 
                 cuts.forEach((imgUrl) => {
                     const img = new Image();
