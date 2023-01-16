@@ -44,7 +44,7 @@ function App() {
                     console.log("---------------");
 
                     const url = URL.createObjectURL(blob);
-                    const file = new File([blob], "흑흑", {
+                    const file = new File([blob], "흑흑.gif", {
                         type: "image/gif",
                     });
 
@@ -67,10 +67,7 @@ function App() {
 
                     const res = await fetch(requestUrl + "image/uploadfile", {
                         method: "POST",
-                        body: formData,
-                        headers: {
-                            "Content-type": "multipart/form-data",
-                        },
+                        body: formData
                     });
                     console.log("res:")
                     console.log(res);
