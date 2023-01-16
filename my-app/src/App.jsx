@@ -16,19 +16,9 @@ function App() {
 
         window.gifler(QQ).get((a) => {
             const res = a["_frames"].map((frame) => {
-                let bufferCanvas, bufferContext, imageData;
-                bufferCanvas = document.createElement("canvas");
-                bufferContext = bufferCanvas.getContext("2d");
-                bufferCanvas.width = frame.width;
-                bufferCanvas.height = frame.height;
-                imageData = bufferContext.createImageData(
-                    frame.width,
-                    frame.height
-                );
-                imageData.data.set(frame.pixels);
-                bufferContext.putImageData(imageData, -frame.x, -frame.y);
-                document.body.append(bufferCanvas);
-                return bufferCanvas;
+                const canvas = window.gifler.createBufferCanvas(frame, frame.width, frame.height);
+                document.body.append(canvas);
+                return canvas;
             });
 
             const exportCuts = async () => {
